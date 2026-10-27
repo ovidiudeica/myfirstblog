@@ -1,13 +1,30 @@
-# Your GitHub Learning Lab Repository for GitHub Pages
+# My First Blog
 
-Welcome to **your** repository for your GitHub Learning Lab course. This repository will be used during the different activities that I will be guiding you through. 
+A simple personal blog created as a **GitHub Learning Lab** GitHub Pages exercise in July 2020. The site uses **Jekyll** and the **Minima** theme and is hosted on **GitHub Pages**.
 
-Oh! I haven't introduced myself...
+**Live website:** https://ovidiudeica.github.io/myfirstblog/
 
-I'm the GitHub Learning Lab bot and I'm here to help guide you in your journey to learn and master the various topics covered in this course. I will be using Issue and Pull Request comments to communicate with you. In fact, I already added an issue for you to check out.
+## Contents
 
-![issue tab](https://lab.github.com/public/images/issue_tab.png)
+- A welcome page titled “Welcome to my blog”.
+- An introductory post from 5 July 2020, also titled “Welcome to my blog”.
 
-I'll meet you over there, can't wait to get started!
+This repository preserves the original learning-exercise content.
 
-This repository is licensed under [MIT](../LICENSE) (c) 2019 GitHub, Inc.
+## Project files
+
+| Path | Purpose |
+| --- | --- |
+| `index.md` | Homepage content |
+| `_posts/2020-07-05-my-first-blog-post.md` | Original blog post |
+| `_config.yml` | Jekyll site settings and social-preview metadata |
+| `assets/images/og-preview-sharp.png` | Image used in the site's LinkedIn/Open Graph link preview |
+| `LICENSE` | MIT license and attribution |
+
+## Making changes
+
+Edit `index.md` to update the homepage. Jekyll blog posts are stored in `_posts/` and use the `YYYY-MM-DD-title.md` filename convention. The site is published through GitHub Pages; the Jekyll theme and the public URL are configured in `_config.yml`.
+
+## Origins and license
+
+This repository began as a GitHub Learning Lab GitHub Pages exercise. The original text and post are retained. See [LICENSE](LICENSE) for the MIT license and original copyright notice.
