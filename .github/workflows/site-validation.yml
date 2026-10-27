@@ -1,0 +1,37 @@
+name: Site validation
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Build and validate site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Build with GitHub Pages Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Verify historic site content and preview asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s _site/index.html
+          grep -Fq 'Welcome to my blog' _site/index.html
+          test -s _site/2020/07/05/my-first-blog-post.html
+          grep -Fq 'Testing' _site/2020/07/05/my-first-blog-post.html
+          test -s _site/assets/images/og-preview-sharp.png
