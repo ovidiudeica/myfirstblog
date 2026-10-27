@@ -13,7 +13,7 @@ defaults:
       type: "pages"
     values:
       image:
-        path: /assets/images/og-preview.png
+        path: /assets/images/og-preview-sharp.png
         width: 1200
         height: 627
         alt: "My First Blog homepage preview"
