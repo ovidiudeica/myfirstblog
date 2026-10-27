@@ -35,3 +35,6 @@ jobs:
           test -s _site/2020/07/05/my-first-blog-post.html
           grep -Fq 'Testing' _site/2020/07/05/my-first-blog-post.html
           test -s _site/assets/images/og-preview-sharp.png
+
+      - name: Validate homepage and article metadata with negative regressions
+        run: python3 .github/scripts/check-metadata.py --negative-tests
