@@ -3,8 +3,6 @@ name: Container-free Pages workflow
 on:
   pull_request:
     branches: [master]
-  push:
-    branches: [master]
   workflow_dispatch:
     inputs:
       confirm_pages_source_actions:
@@ -64,7 +62,7 @@ jobs:
 
   deploy:
     name: Deploy container-free site to GitHub Pages
-    if: ${{ github.ref == 'refs/heads/master' && ((github.event_name == 'workflow_dispatch' && inputs.confirm_pages_source_actions == true) || (github.event_name == 'push' && vars.PAGES_DEPLOY_ENABLED == 'true')) }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && inputs.confirm_pages_source_actions == true }}
     needs: preview
     runs-on: ubuntu-latest
     permissions:
