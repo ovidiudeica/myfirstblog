@@ -81,7 +81,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
     mercenary (0.3.6)
-    minima (2.5.1)
+    minima (2.5.2)
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
@@ -140,7 +140,7 @@ DEPENDENCIES
   jekyll-seo-tag (= 2.9.1)
   jekyll-titles-from-headings (= 0.5.7)
   kramdown-parser-gfm (= 1.1.0)
-  minima (= 2.5.1)
+  minima (= 2.5.2)
 
 BUNDLED WITH
    2.6.9
