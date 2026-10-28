@@ -3,7 +3,7 @@ source "https://rubygems.org"
 # Pages-compatible direct dependencies; deliberately exclude github-pages and
 # jekyll-remote-theme, which would reintroduce the vulnerable rubyzip chain.
 gem "jekyll", "= 3.10.0"
-gem "minima", "= 2.5.1"
+gem "minima", "2.5.2"
 gem "jekyll-seo-tag", "2.9.1"
 gem "jekyll-feed", "0.18.0"
 gem "jekyll-github-metadata", "= 2.16.1"
