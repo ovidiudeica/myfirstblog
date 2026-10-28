@@ -33,6 +33,11 @@ jobs:
           bundle exec ruby -rbundler -e 'bad = Bundler.load.specs.map(&:name) & %w[github-pages jekyll-remote-theme rubyzip]; abort "Unexpected gems: #{bad.join(", ")}" unless bad.empty?'
           bundle exec jekyll build --config _config.yml,.github/pages-actions.yml
 
+      - name: Reject Ruby gems with known advisories
+        run: |
+          gem install bundler-audit --version 0.9.3 --no-document
+          bundle-audit check --update
+
       - name: Verify historic site content and preview asset
         shell: bash
         run: |
