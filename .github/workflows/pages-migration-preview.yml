@@ -20,12 +20,11 @@ jobs:
       - uses: ruby/setup-ruby@b1da4809b005e0178fe08a1d57317bffc00b7b4c # v1.332.0
         with:
           ruby-version: '3.4'
-          bundler-cache: false
-      - name: Resolve and install a candidate Gemfile.lock
+          bundler-cache: true
+      - name: Validate frozen candidate Gemfile.lock
         run: |
-          bundle lock --add-platform ruby
-          bundle install
           bundle check
+          git diff --exit-code -- Gemfile.lock
       - name: Reject vulnerable ZIP dependency graph
         run: |
           bundle exec ruby -rbundler -e 'bad = Bundler.load.specs.map(&:name) & %w[github-pages jekyll-remote-theme rubyzip]; abort "Unexpected gems: #{bad.join(", ")}" unless bad.empty?'
