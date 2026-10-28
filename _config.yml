@@ -18,6 +18,19 @@ defaults:
         height: 627
         alt: "My First Blog homepage preview"
 
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      image:
+        path: /assets/images/og-preview-sharp.png
+        width: 1200
+        height: 627
+        alt: "My First Blog homepage preview"
+      # Preserve the article's existing card type when adding its preview image.
+      twitter:
+        card: summary
+
 # social links
 linkedin_username: ovidiudeica # DO NOT include the @ character, or else the build will fail!
 github_username:  ovidiudeica # DO NOT include the @ character, or else the build will fail!
