@@ -1,0 +1,21 @@
+# Used only by the alternative GitHub Actions build; not the published site.
+# Mirror relevant GitHub Pages defaults without the github-pages umbrella gem.
+plugins:
+  - jekyll-github-metadata
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+  - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-feed
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  gfm_quirks: paragraph_end
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
