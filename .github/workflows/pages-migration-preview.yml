@@ -1,0 +1,56 @@
+name: Container-free Pages rehearsal
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    name: Build alternative blog Pages artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@b1da4809b005e0178fe08a1d57317bffc00b7b4c # v1.332.0
+        with:
+          ruby-version: '3.4'
+          bundler-cache: false
+      - name: Resolve and install a candidate Gemfile.lock
+        run: |
+          bundle lock --add-platform ruby
+          bundle install
+          bundle check
+      - name: Reject vulnerable ZIP dependency graph
+        run: |
+          bundle exec ruby -rbundler -e 'bad = Bundler.load.specs.map(&:name) & %w[github-pages jekyll-remote-theme rubyzip]; abort "Unexpected gems: #{bad.join(", ")}" unless bad.empty?'
+          gem install bundler-audit --version 0.9.3 --no-document
+          bundle-audit check --update
+      - name: Build candidate with explicit Pages-compatible plugins
+        env:
+          JEKYLL_ENV: production
+          PAGES_REPO_NWO: ovidiudeica/myfirstblog
+        run: bundle exec jekyll build --config _config.yml,.github/pages-actions.yml
+      - name: Validate historic content, metadata and excluded files
+        run: |
+          test -s _site/index.html
+          test -s _site/2020/07/05/my-first-blog-post.html
+          test -s _site/assets/images/og-preview-sharp.png
+          test ! -e _site/Gemfile
+          test ! -e _site/Gemfile.lock
+          python3 .github/scripts/check-metadata.py --negative-tests
+      - name: Record resolved gem versions for lockfile review
+        run: |
+          echo '=== PAGES_CANDIDATE_LOCK_BEGIN ==='
+          cat Gemfile.lock
+          echo '=== PAGES_CANDIDATE_LOCK_END ==='
+      - name: Upload Pages-compatible artifact (preview only)
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: _site
+          retention-days: 7
